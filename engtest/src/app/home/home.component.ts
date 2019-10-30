@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from '../http-service.service';
 import { switchMap } from 'rxjs/operators';
-import {Subscription,timer} from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,21 +12,21 @@ export class HomeComponent implements OnInit {
   subscription: Subscription;
   modalWindowResp: any;
 
-  constructor(private httpService:HttpServiceService) { }
+  constructor(private httpService: HttpServiceService) { }
 
   ngOnInit() {
-this.subscription=timer(0,10000).pipe(
-  switchMap(()=>this.httpService.getMethod())
-)
-    .subscribe((res: any[])=>{
-      console.log(res);
-      this.list = res['hits'];
-      console.log("this.resul",this.list)
-    })  
-        
+    this.subscription = timer(0, 10000).pipe(
+      switchMap(() => this.httpService.getMethod())
+    )
+      .subscribe((res: any[]) => {
+        console.log(res);
+        this.list = res['hits'];
+        console.log("this.resul", this.list)
+      })
+
   }
-  modalWindow(resp){
-    this.modalWindowResp=resp
+  modalWindow(resp) {
+    this.modalWindowResp = resp
 
   }
 }
